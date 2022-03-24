@@ -4,18 +4,30 @@
 Book List 📚 
 {% endblock %} 
 
-<body>
 {% block content %}
-	<Header id="headerStyle"><p>Books</p></Header>
 
-<div class="bodyStyle">
-{% for book in books %}
-<h3>Title: {{book.title}}</h3>
-<h3>Author: {{book.author}}</h3>
-<h3>Published: {{book.published}}</h3>
-<h3>Genre: {{book.genre}}</h3>
-{% endfor %}
-</div>
- 
+<form>
+    <div>
+        <!-- searches for the name of the book -->
+        <input type="text" name="title" placeholder="title"/>
+        <input type="submit" value="Search"/>
+    </div>
+    <!-- this a tag will redirect back to catlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
+    <a href="{% url 'book_list' %}">Clear Search</a>
+</form>
+
+<h1>{{header}}</h1>
+    {% for book in books %}
+    <img src="{{book.img}}" alt="{{book.name}}">
+        <a href="{% url 'book_list' %}">
+            <h3>Title: {{book.title}}</h3>
+        </a>
+		<h3>Author: {{book.author}}</h3>
+        <h3>Published: {{book.published}}</h3>
+        <h3>Category: {{book.category}}</h3>
+    {% endfor %}
 {% endblock %}
-</body>
+
+
+
+<!-- <Header id="headerStyle"><p>Books</p></Header> -->
