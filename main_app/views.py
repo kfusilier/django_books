@@ -25,26 +25,26 @@ class About(TemplateView):
 	# 	return HttpResponse('Books About')
 
 class Book:
-    def __init__(self, title, author, published, genre):
-        self.title = title
-        self.author = author
-        self.published = published
-        self.genre = genre
+	def __init__(self, title, author, published, genre):
+		self.title = title
+		self.author = author
+		self.published = published
+		self.genre = genre
 
 books = [
-    Book("The Catcher in the Rye", "J.D. Salinger", 1991, "Fiction"),
-    Book("Moby Dick", "Herman Melville", 1976, "Fiction"),
-    Book("Little Women", "Louisa May Alcott", 1868, "Fiction"),
-    Book("War and Peace", "Leo Tolstoy", 1869, "Fiction"),
-    Book("Call of the Wild", "Jack London", 1903, "Fiction"),
+	Book("The Catcher in the Rye", "J.D. Salinger", 1991, "Fiction"),
+	Book("Moby Dick", "Herman Melville", 1976, "Fiction"),
+	Book("Little Women", "Louisa May Alcott", 1868, "Fiction"),
+	Book("War and Peace", "Leo Tolstoy", 1869, "Fiction"),
+	Book("Call of the Wild", "Jack London", 1903, "Fiction"),
 ]
 
 
 
 class Book_List(TemplateView):
-    template_name = 'booklist.html'
+	template_name = 'booklist.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['books'] = books # this is where we add the key into our context object for the view to use
-        return context
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['books'] = books # this is where we add the key into our context object for the view to use
+		return context
