@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+Book List 📚 
+{% endblock %} 
+
+<body>
+{% block content %}
+	<Header id="headerStyle"><p>Books</p></Header>
+
+<div class="bodyStyle">
+{% for book in books %}
+<h3>Title: {{book.title}}</h3>
+<h3>Author: {{book.author}}</h3>
+<h3>Published: {{book.published}}</h3>
+<h3>Genre: {{book.genre}}</h3>
+{% endfor %}
+</div>
+ 
+{% endblock %}
+</body>

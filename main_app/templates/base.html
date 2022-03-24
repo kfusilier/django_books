@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<!-- CDN SCRIPTS CSS go here -->
+		<link rel="stylesheet" href="{% static 'styles/styles.css'%}" />
+		<script src="{% static 'scripts/app.js' %}" defer></script>
+		<title>{% block title %}{% endblock %}</title>
+	</head>
+
+	<body>
+			<nav>
+				<ul>
+					<li><a href="http://localhost:8000">Home</a></li>
+					<li><a href="http://localhost:8000/about/">About</a></li>
+					<li><a href="http://localhost:8000/books/">Books</a></li>
+					<li><a href=" ">Log In</a></li>
+				</ul>
+			</nav>
+	
+    {% block content %}
+
+    {% endblock %}
+	</body>
+</html>
