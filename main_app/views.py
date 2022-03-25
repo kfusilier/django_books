@@ -1,3 +1,4 @@
+from turtle import title
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views import View # View class to handle requests
@@ -18,5 +19,13 @@ class Book_List(TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		context["books"] = Book.objects.all() # uses model to query the database
+		title = self.request.GET.get("title")
+		if title != None:
+			context["books"] = Book.objects.filter(title__icontains=title)
+			# We add a header context that includes the search param
+			context["header"] = f"Searching for {title}"
+		else:
+			context["books"] = Book.objects.all()
+			# default header for not searching 
+			context["header"] = "Book List"
 		return context
