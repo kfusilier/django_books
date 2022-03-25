@@ -1,9 +1,12 @@
-from turtle import title
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views import View # View class to handle requests
 from django.http import HttpResponse # a class to handle sending a type of response
 
+from django.views.generic import DetailView
+from django.urls import reverse
+
+from django.views.generic.edit import CreateView
 from .models import Book #import Book model
 
 # Create your views here.
@@ -29,3 +32,14 @@ class Book_List(TemplateView):
 			# default header for not searching 
 			context["header"] = "Book List"
 		return context
+
+class Book_Create(CreateView):
+	model = Book
+	fields = ['title', 'author', 'img', 'published', 'category']
+	template_name = "book_create.html"
+	success_url = "/books/"
+
+
+# class Book_Detail(DetailView): 
+# 	model = Book
+# 	template_name="book_detail.html"

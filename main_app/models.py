@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 CATEGORY_CHOICES = (
-	("fic", "Fiction"),
-	("nfic", "Non-fiction")
+	("Fic", "Fiction"),
+	("NonFic", "Non-fiction")
 )
 
 # GENRE_CHOICES = (
