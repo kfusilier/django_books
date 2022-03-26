@@ -7,7 +7,7 @@ from django.views.generic import DetailView
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Book #import Book model
+from .models import Book, Author #import Book model
 
 # Create your views here.
 # Here we will be creating a class called Home and extending it from the View class
@@ -46,7 +46,6 @@ class Book_Create(CreateView):
 		self.object.save()
 		return HttpResponseRedirect('/books')
 
-
 class Book_Detail(DetailView): 
 	model = Book
 	template_name="book_detail.html"
@@ -68,3 +67,29 @@ def profile(request, username):
     user = User.objects.get(username=username)
     books = Book.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'books': books})
+
+# Author 
+def authors_index(request):
+    authors = Author.objects.all()
+    return render(request, 'author_index.html', {'authors': authors})
+
+def authors_show(request, author_id):
+    author = Author.objects.get(id=author_id)
+    return render(request, 'author_show.html', {'author': author})
+
+class Author_Create(CreateView):
+    model = Author
+    fields = '__all__'
+    template_name = "author_form.html"
+    success_url = '/authors'
+
+class Author_Update(UpdateView):
+    model = Author
+    fields = ['name']
+    template_name = "author_update.html"
+    success_url = '/authors'
+
+class Author_Delete(DeleteView):
+    model = Author
+    template_name = "author_confirm_delete.html"
+    success_url = '/authors'

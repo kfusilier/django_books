@@ -7,12 +7,18 @@ CATEGORY_CHOICES = (
 	("Non-Fiction", "Non-fiction")
 )
 
+# Author Model
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 # Book Model
 class Book(models.Model):
 
 	title = models.CharField(max_length=100)
-	author1 = models.CharField(max_length=50)
+	authors = models.ManyToManyField(Author)
 	img = models.CharField(max_length=250)
 	published = models.IntegerField()
 	publisher1 = models.CharField(max_length=100)
@@ -25,10 +31,3 @@ class Book(models.Model):
 
 	class Meta:
 		ordering = ['title']
-
-# Author Model
-class Author(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name

@@ -15,6 +15,11 @@
     <h3>Added: {{book.created_at}}</h3>
 </div>
 <div>
+    {% for author in author.authors.all %}
+    <div>{{author.name}}</div>
+{% empty %}
+    <div>Book Has No Author :(</div>
+{% endfor %}
     <a href="{% url 'book_update' book.pk %}">Update</a>
     <a href="{% url 'book_delete' book.pk %}">Delete</a>
 </div>
