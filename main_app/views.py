@@ -6,7 +6,7 @@ from django.http import HttpResponse # a class to handle sending a type of respo
 from django.views.generic import DetailView
 from django.urls import reverse
 
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from .models import Book #import Book model
 
 # Create your views here.
@@ -37,9 +37,16 @@ class Book_Create(CreateView):
 	model = Book
 	fields = ['title', 'author', 'img', 'published', 'category']
 	template_name = "book_create.html"
-	success_url = "/books/"
-
+	def get_success_url(self):
+		return reverse('book_detail', kwargs={'pk': self.object.pk})
 
 class Book_Detail(DetailView): 
 	model = Book
 	template_name="book_detail.html"
+
+class Book_Update(UpdateView):
+	model = Book
+	fields = ['title', 'author', 'img', 'published', 'category']
+	template_name = "book_update.html"
+	def get_success_url(self):
+		return reverse('book_detail', kwargs={'pk': self.object.pk})
