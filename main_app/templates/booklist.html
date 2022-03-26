@@ -19,8 +19,8 @@ Book List 📚
 
 <h1>{{header}}</h1>
     {% for book in books %}
-    <img src="{{book.img}}" alt="{{book.name}}">
-        <a href="{% url 'book_list' %}">
+    <img src="{{book.img}}" alt="{{book.title}}">
+        <a href="{% url 'book_detail' book.pk %}">
             <h3>Title: {{book.title}}</h3>
         </a>
 		<h3>Author: {{book.author}}</h3>

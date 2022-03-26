@@ -40,6 +40,6 @@ class Book_Create(CreateView):
 	success_url = "/books/"
 
 
-# class Book_Detail(DetailView): 
-# 	model = Book
-# 	template_name="book_detail.html"
+class Book_Detail(DetailView): 
+	model = Book
+	template_name="book_detail.html"
