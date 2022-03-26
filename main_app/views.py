@@ -6,7 +6,7 @@ from django.http import HttpResponse # a class to handle sending a type of respo
 from django.views.generic import DetailView
 from django.urls import reverse
 
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Book #import Book model
 
 # Create your views here.
@@ -50,3 +50,8 @@ class Book_Update(UpdateView):
 	template_name = "book_update.html"
 	def get_success_url(self):
 		return reverse('book_detail', kwargs={'pk': self.object.pk})
+
+class Book_Delete(DeleteView):
+    model = Book
+    template_name = "book_delete_confirm.html"
+    success_url = "/books/"

@@ -14,7 +14,7 @@
 </div>
 <div>
     <a href="{% url 'book_update' book.pk %}">Update</a>
-    <a href=""></a>
+    <a href="{% url 'book_delete' book.pk %}">Delete</a>
 </div>
 
 {% endblock %}
