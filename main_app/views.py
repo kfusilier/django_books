@@ -35,7 +35,7 @@ class Book_List(TemplateView):
 
 class Book_Create(CreateView):
 	model = Book
-	fields = ['title', 'author', 'img', 'published', 'category']
+	fields = ['title', 'author', 'img', 'published', 'publisher', 'category']
 	template_name = "book_create.html"
 	def get_success_url(self):
 		return reverse('book_detail', kwargs={'pk': self.object.pk})
@@ -46,7 +46,7 @@ class Book_Detail(DetailView):
 
 class Book_Update(UpdateView):
 	model = Book
-	fields = ['title', 'author', 'img', 'published', 'category']
+	fields = ['title', 'author', 'img', 'published', 'publisher', 'category']
 	template_name = "book_update.html"
 	def get_success_url(self):
 		return reverse('book_detail', kwargs={'pk': self.object.pk})
