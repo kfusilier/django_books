@@ -19,7 +19,7 @@ Book List 📚
 
 <h1>{{header}}</h1>
     {% for book in books %}
-    <img src="{{book.img}}" alt="{{book.title}}">
+    <img src="{{book.img}}" alt="{{book.title}}"width="150" height="220">
         <a href="{% url 'book_detail' book.pk %}">
             <h3>Title: {{book.title}}</h3>
         </a>
