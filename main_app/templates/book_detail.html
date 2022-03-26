@@ -8,18 +8,17 @@
     <h1>{{book.title}}</h1>
 </div>
 <div>
-    <h3>Author: {{book.author}}</h3>
+    <h3>Author:</h3> {% for author in book.authors.all %}<p> {{author.name}}</p>
+{% empty %}
+    <div>Book Has No Author :(</div>
+{% endfor %}
 	<h3>Published: {{book.published}}</h3>
     <h3>Publisher: {{book.publisher}}</h3>
     <h3>Category: {{book.category}}</h3>
     <h3>Added: {{book.created_at}}</h3>
 </div>
 <div>
-    {% for author in author.authors.all %}
-    <div>{{author.name}}</div>
-{% empty %}
-    <div>Book Has No Author :(</div>
-{% endfor %}
+
     <a href="{% url 'book_update' book.pk %}">Update</a>
     <a href="{% url 'book_delete' book.pk %}">Delete</a>
 </div>
