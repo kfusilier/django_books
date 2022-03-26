@@ -7,11 +7,6 @@ CATEGORY_CHOICES = (
 	("Non-Fiction", "Non-fiction")
 )
 
-# GENRE_CHOICES = (
-# 	("fic", "fiction"),
-# 	("nfic", "non-fiction")
-# )
-
 class Book(models.Model):
 
 	title = models.CharField(max_length=100)
@@ -19,7 +14,8 @@ class Book(models.Model):
 	img = models.CharField(max_length=250)
 	published = models.IntegerField()
 	publisher = models.CharField(max_length=100)
-	category = models.CharField(max_length=50, choices = CATEGORY_CHOICES)
+	category = models.CharField(max_length=50, choices = CATEGORY_CHOICES) # 1-many
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	created_at = models.DateTimeField(auto_now_add=True)
 	
 	def __str__(self):

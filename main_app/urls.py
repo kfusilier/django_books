@@ -9,5 +9,6 @@ urlpatterns = [
 	path('books/new/', views.Book_Create.as_view(), name="book_create"),
 	path('books/<int:pk>/', views.Book_Detail.as_view(), name="book_detail"),
 	path('books/<int:pk>/update', views.Book_Update.as_view(), name="book_update"),
-	path('books/<int:pk>delete', views.Book_Delete.as_view(), name="book_delete")
+	path('books/<int:pk>delete', views.Book_Delete.as_view(), name="book_delete"),
+	path('user/<username>/', views.profile, name='profile'),
 ]

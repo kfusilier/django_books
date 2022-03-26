@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views import View # View class to handle requests
 from django.http import HttpResponse # a class to handle sending a type of response
-
+from django.http import HttpResponseRedirect
 from django.views.generic import DetailView
 from django.urls import reverse
-
+from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Book #import Book model
 
@@ -37,8 +37,15 @@ class Book_Create(CreateView):
 	model = Book
 	fields = ['title', 'author', 'img', 'published', 'publisher', 'category']
 	template_name = "book_create.html"
-	def get_success_url(self):
-		return reverse('book_detail', kwargs={'pk': self.object.pk})
+	# def get_success_url(self):
+	# 	return reverse('book_detail', kwargs={'pk': self.object.pk})
+
+	def form_valid(self, form):
+		self.object = form.save(commit=False)
+		self.object.user = self.request.user
+		self.object.save()
+		return HttpResponseRedirect('/books')
+
 
 class Book_Detail(DetailView): 
 	model = Book
@@ -52,6 +59,12 @@ class Book_Update(UpdateView):
 		return reverse('book_detail', kwargs={'pk': self.object.pk})
 
 class Book_Delete(DeleteView):
-    model = Book
-    template_name = "book_delete_confirm.html"
-    success_url = "/books/"
+	model = Book
+	template_name = "book_delete_confirm.html"
+	success_url = "/books/"
+
+# profile for the user
+def profile(request, username):
+    user = User.objects.get(username=username)
+    books = Book.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'books': books})
