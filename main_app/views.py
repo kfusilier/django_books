@@ -110,10 +110,8 @@ class Author_Delete(DeleteView):
 
 # login, logout and signup
 def login_view(request):
-    # if post, then authenticate (user submitted username and password)
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
-        # form = LoginForm(request.POST)
         if form.is_valid():
             u = form.cleaned_data['username']
             p = form.cleaned_data['password']
@@ -123,11 +121,12 @@ def login_view(request):
                     login(request, user)
                     return HttpResponseRedirect('/user/'+u)
                 else:
-                    print('The account has been disabled.')
+                    return render(request, 'login.html', {'form': form})
             else:
-                print('The username and/or password is incorrect.')
-    else: # it was a get request so send the emtpy login form
-        # form = LoginForm()
+                return render(request, 'login.html', {'form': form})
+        else: 
+            return render(request, 'signup.html', {'form': form})
+    else:
         form = AuthenticationForm()
         return render(request, 'login.html', {'form': form})
 
@@ -144,7 +143,8 @@ def signup_view(request):
             print('HEY', user.username)
             return HttpResponseRedirect('/user/'+str(user))
         else:
-            HttpResponse('<h1>Try Again</h1>')
+            return render(request, 'signup.html', {'form': form})
+
     else:
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
