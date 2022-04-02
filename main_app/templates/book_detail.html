@@ -3,7 +3,7 @@
 {% block content %}
 
 <div>
-  <img src="{{book.img}}" alt="{{book.name}}" />
+  <img src="{{book.img}}" alt="{{book.name}}"width="150" height="220"/>
 </div>
     <h1>{{book.title}}</h1>
 </div>
@@ -13,9 +13,11 @@
     <div>Book Has No Author :(</div>
 {% endfor %}
 	<h3>Published: {{book.published}}</h3>
-    <h3>Publisher: {{book.publisher}}</h3>
     <h3>Category: {{book.category}}</h3>
-    <h3>Added: {{book.created_at}}</h3>
+    <h3>Created: {{book.created_at}}</h3>
+  <h3>Added by:
+        <a href="/user/{{ book.user.username }}">{{ book.user.username }}</a>
+  </h3>
 </div>
 <div>
 

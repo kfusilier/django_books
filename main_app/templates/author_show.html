@@ -7,11 +7,11 @@
 <div>
     <div>
         <span>{{ author.name }}</span>
-        <p>Owned by:</p>
+        <p>Author of:</p>
         {% for book in author.book_set.all %}
             <p>{{book.name}}</p>
         {% empty %}
-            <p>This author has no books.</p>
+            <p>This Author has no books.</p>
         {% endfor %}
     </div>
     <div>
