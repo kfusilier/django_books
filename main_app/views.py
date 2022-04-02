@@ -76,7 +76,7 @@ def profile(request, username):
     books = Book.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'books': books})
 
-# Author 
+# Author view function
 def authors_index(request):
     authors = Author.objects.all()
     return render(request, 'author_index.html', {'authors': authors})
