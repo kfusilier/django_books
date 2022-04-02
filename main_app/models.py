@@ -1,19 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+# Author Model
+class Author(models.Model):
+	name = models.CharField(max_length=100)
+
+	def __str__(self):
+		return self.name
+
 # Create your models here.
 CATEGORY_CHOICES = (
 	("Fiction", "Fiction"),
 	("Non-Fiction", "Non-fiction")
 )
-
-# Author Model
-class Author(models.Model):
-    name = models.CharField(max_length=100)
-	
-
-    def __str__(self):
-        return self.name
 
 # Book Model
 class Book(models.Model):

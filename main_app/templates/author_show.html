@@ -8,8 +8,8 @@
     <div>
         <span>{{ author.name }}</span>
         <p>Author of:</p>
-        {% for book in author.book_set.all %}
-            <p>{{book.name}}</p>
+        {% for book in books %}
+            <p>{{book.title}}</p>
         {% empty %}
             <p>This Author has no books.</p>
         {% endfor %}

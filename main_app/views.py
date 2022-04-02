@@ -83,7 +83,10 @@ def authors_index(request):
 
 def authors_show(request, author_id):
     author = Author.objects.get(id=author_id)
-    return render(request, 'author_show.html', {'author': author})
+    books = list(author.book_set.all())
+    print('AUTHOR', author)
+    print('BOOKS', list(author.book_set.all()))
+    return render(request, 'author_show.html', {'author': author, 'books': books})
 
 @method_decorator(login_required, name='dispatch')
 class Author_Create(CreateView):
@@ -107,7 +110,7 @@ class Author_Delete(DeleteView):
 
 # login, logout and signup
 def login_view(request):
-     # if post, then authenticate (user submitted username and password)
+    # if post, then authenticate (user submitted username and password)
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         # form = LoginForm(request.POST)
