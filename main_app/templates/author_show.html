@@ -9,7 +9,7 @@
         <span>{{ author.name }}</span>
         <p>Author of:</p>
         {% for book in books %}
-            <p>{{book.title}}</p>
+        <img src="{{book.img}}" alt="{{book.name}}"width="150" height="220"/>
         {% empty %}
             <p>This Author has no books.</p>
         {% endfor %}
