@@ -1,5 +1,6 @@
 {% load static %}
-<!DOCTYPE html>
+
+<!DOCTYPE html>	
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -15,37 +16,25 @@
 	</head>
 
 	<body>
-			<nav>
-				{% if user.is_authenticated %}
-        <span><a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a></span>
-        <span> | </span>
-        <span><a href="{% url 'logout' %}">Logout</a></span>
-        <span> | </span>
-        {% else %}
-        <span><a href="{% url 'login' %}">Login</a></span>
-        <span> | </span>
-        <span><a href="{% url 'signup' %}">SignUp</a></span>
-        {% endif %}
-        <a href="/admin">Admin</a>
-        <span> | </span>
-        <a href="/">Home</a>
-        <span> | </span>
-        <a href="/about">About</a>
-        <span> | </span>
-        <a href="/books">Books List</a>
-        <span> | </span>
-        <a href="/authors">Authors List</a>
-        <span> | </span>
-        <a href="{% url 'book_create' %}">Add a Book</a>
-        <span> | </span>
-        <a href="{% url 'authors_create' %}">Add an Author</a>
-        <span> | </span>
-
-				</ul>
-			</nav>
-	
-    {% block content %}
-
-    {% endblock %}
+		<nav>
+			<ul>
+			{% if user.is_authenticated %}
+				<li id="auth"><a href="{% url 'profile' user.username %}">Hello,  {{ user.username }}!</a></li>
+				<li id="auth"><a href="{% url 'logout' %}">Logout</a></li>
+				<li id="auth"><a href="/admin">DB Admin</a></li>
+				<li><a href="{% url 'book_create' %}">Add Book</a></li>
+				<li><a href="{% url 'authors_create' %}">Add Author</a></li>
+			{% else %}
+				<li id="auth"><a href="{% url 'login' %}">Login</a></li>
+				<li id="auth"><a href="{% url 'signup' %}">Sign Up</a></li>
+			{% endif %}
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/books">Books List</a></li>
+				<li><a href="/authors">Authors List</a></li>
+			</ul>
+		</nav>
+			{% block content %}
+			{% endblock %}
 	</body>
 </html>

@@ -4,33 +4,39 @@
 Book List 📚 
 {% endblock %} 
 
+<body> 
 {% block content %}
-<h1>{{header}}</h1>
-<form>
-    <div id="headerStyle">
-        <!-- searches for the name of the book -->
-        <input type="text" name="title" placeholder="title"/>
-        <input type="submit" value="Search"/>
+    <Header id="headerStyle"><h3>{{header}}</h3></Header>
+
+    <div class='bodyStyle'>
+        <!-- Search Form  -->
+        <form> 
+            <div>
+                <input type="text" name="title" placeholder="title"/>
+                <input type="submit" value="Search"/>
+                <button><a href="{% url 'book_list' %}">Clear Search</a></button>
+            </div>
+        </form>
+
+        <!-- Booklist Output  -->
+        {% for book in books %}
+
+            <div class="bookList">
+                <div class="bookStyle">
+                    <img src="{{book.img}}" alt="{{book.title}}"width="150" height="220">
+                    <a href="{% url 'book_detail' book.pk %}">
+                    <h4>{{book.title}}</h4></a>
+                    <p>Published: {{book.published}}</p>
+                    <p>Category: {{book.category}}</p>
+                    <p>Added By: 
+                    <a href='/user/{{book.user.username}}'>{{book.user.username}}</a></p>  
+                </div>
+            </div>
+
+        {% endfor %}
+
     </div>
-    <!-- this a tag will redirect back to catlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
-    <a href="{% url 'book_list' %}">Clear Search</a>
-</form>
 
-    {% for book in books %}
-    <img src="{{book.img}}" alt="{{book.title}}"width="150" height="220">
-        <a href="{% url 'book_detail' book.pk %}">
-            <h3>Title: {{book.title}}</h3>
-        </a>
-        <h3>Published: {{book.published}}</h3>
-        <h3>Category: {{book.category}}</h3>
-        <H3>Added By: 
-            <a href='/user/{{book.user.username}}'>{{book.user.username}}</a>
-        </H3>        
-    
-
-    {% endfor %}
 {% endblock %}
 
-
-
-<!-- <Header id="headerStyle"><p>Books</p></Header> -->
+<body> 

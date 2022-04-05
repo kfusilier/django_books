@@ -1,26 +1,25 @@
-<!-- templates/cattoy_show.html -->
 {% extends 'base.html' %}
-{% block content %}
 
-<h1>Author List</h1>
-{% for author in authors %}
+{% block title %}
+Author List 🖋
+{% endblock %} 
 
-    <div>
-        <a href="{% url 'authors_show' author.id %}">
-            <div class="card-content">
-                <span>{{ author.name }}</span>
-            </div>
-        </a>
-    </div>
-{% endfor %}
+<body>
+	{% block content %}
+		<Header id="headerStyle"><p>Author List</p></Header>
+		
+	<div class='bodyStyle'>
+		{% for author in authors %}
+			<div>
+				<a href="{% url 'authors_show' author.id %}">
+					<div class="card-content">
+						<span>{{ author.name }}</span>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
 
-{% endblock %}
+		{% endblock %}
+	</div>
 
-<!-- templates/cattoy_index.html -->
-
-
-
-    <!-- <div>
-        <a href="{% url 'authors_update' author.id %}">Edit</a>
-        <a href="{% url 'authors_delete' author.id %}">Delete</a>
-    </div> -->
+</body>

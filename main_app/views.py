@@ -73,7 +73,8 @@ class Book_Delete(DeleteView):
 @login_required
 def profile(request, username):
     user = User.objects.get(username=username)
-    books = Book.objects.filter(user=user)
+    # books = Book.objects.filter(user=request.user)
+    books = list(user.book_set.all())
     return render(request, 'profile.html', {'username': username, 'books': books})
 
 # Author view function
@@ -140,7 +141,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            print('HEY', user.username)
+            print('Hello', user.username)
             return HttpResponseRedirect('/user/'+str(user))
         else:
             return render(request, 'signup.html', {'form': form})

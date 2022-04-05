@@ -1,15 +1,19 @@
-<!-- templates/cattoy_show.html -->
 {% extends 'base.html' %}
-{% block content %}
 
-<h1>Author Detail</h1>
+{% block title %} 
+    Author Detail 
+{% endblock %}
 
-<div>
+<body>
+    {% block content %}
+        <Header id="headerStyle"><p>Author Detail</p></Header>
+
+<div class='bodyStyle'>
     <div>
         <span>{{ author.name }}</span>
         <p>Author of:</p>
         {% for book in books %}
-        <img src="{{book.img}}" alt="{{book.name}}"width="150" height="220"/>
+        <img src="{{book.img}}" alt="{{book.title}}"width="150" height="220"/>
         {% empty %}
             <p>This Author has no books.</p>
         {% endfor %}
@@ -19,4 +23,6 @@
         <a href="{% url 'authors_delete' author.id %}">Delete</a>
     </div>
 </div>
+
 {% endblock %}
+</body>
