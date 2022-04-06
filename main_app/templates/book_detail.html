@@ -1,28 +1,29 @@
 {% extends 'base.html' %} 
 
-{% block content %}
-
-<div>
-  <img src="{{book.img}}" alt="{{book.name}}"width="150" height="220"/>
-</div>
-    <h1>{{book.title}}</h1>
-</div>
-<div>
-    <h3>Author:</h3> {% for author in book.authors.all %}<p> {{author.name}}</p>
-{% empty %}
-    <div>Book Has No Author :(</div>
-{% endfor %}
-	<h3>Published: {{book.published}}</h3>
-    <h3>Category: {{book.category}}</h3>
-    <h3>Created: {{book.created_at}}</h3>
-  <h3>Added by:
-        <a href="/user/{{ book.user.username }}">{{ book.user.username }}</a>
-  </h3>
-</div>
-<div>
-
-    <a href="{% url 'book_update' book.pk %}">Update</a>
-    <a href="{% url 'book_delete' book.pk %}">Delete</a>
-</div>
-
+{% block title %} 
+Book Detail 📚
 {% endblock %}
+
+<body>
+    {% block content %}
+		<Header id="headerStyle"><p>Book Detail</p></Header>
+    
+		<div class='bodyStyle'>
+            <img src="{{book.img}}" alt="{{book.name}}"width="150" height="220"/>
+            <h1>{{book.title}}</h1>
+            <h3>Author(s):</h3> {% for author in book.authors.all %}<p> {{author.name}}</p>
+        {% empty %}
+            <div>Book Has No Author :(</div>
+        {% endfor %}
+            <h3>Published: {{book.published}}</h3>
+            <h3>Category: {{book.category}}</h3>
+            <h3>Created: {{book.created_at}}</h3>
+        <h3>Added by:
+                <a href="/user/{{ book.user.username }}">{{ book.user.username }}</a></h3>
+
+        <a href="{% url 'book_update' book.pk %}">Update</a>
+        <a href="{% url 'book_delete' book.pk %}">Delete</a>
+    </div>
+
+    {% endblock %}
+</body>

@@ -10,10 +10,11 @@
 
 <div class='bodyStyle'>
     <div>
-        <span>{{ author.name }}</span>
+        <h3>{{ author.name }}</h>
         <p>Author of:</p>
         {% for book in books %}
         <img src="{{book.img}}" alt="{{book.title}}"width="150" height="220"/>
+        <h4>{{book.title}}</h4></a>
         {% empty %}
             <p>This Author has no books.</p>
         {% endfor %}

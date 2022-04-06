@@ -1,18 +1,22 @@
 {% extends 'base.html' %} 
 
 {% block title %} 
-Update
+Book Update 📚
 {% endblock %} 
 
 <body>
     {% block content %}
-        <Header id="headerStyle"><p>Update</p></Header>
+        <Header id="headerStyle"><p>Book Update</p></Header>
 
-        <form action="" method="post">
-          {% csrf_token %} 
-          {{form.as_p}} 
-          <input type="submit" value="Submit" />
-        </form>
+        <div class="formContainer">
+			<div id="formStyle">
+                <form action="" method="post">
+                    {% csrf_token %} 
+                    {{form.as_p}} 
+                        <input type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
 
     {% endblock %}
 </body>

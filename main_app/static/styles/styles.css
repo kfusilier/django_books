@@ -63,10 +63,6 @@ body {
 	margin: 0;
 }
 
-/* .center {
-	align-content: center;
-} */
-
 .bodyStyle {
 	text-align:center;
 	/* padding: 20px; */
@@ -81,14 +77,23 @@ body {
 	justify-content: center;
 	border: 3px solid #7fb7be;
 	border-radius: 20px;
-
 }  
+
+.blurbContainer {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	/* justify-content: center; */
+	border: 3px solid #7fb7be;
+	border-radius: 20px;
+} 
 
 #formStyle {
 	text-align:left;
 	padding: 30px;
+	margin: 20px;
 } 
-
 
 .bookList {
 	display: inline-flex;
@@ -98,4 +103,11 @@ body {
 
 .bookStyle {
 	margin: 10px;
+}
+
+#blurb {
+	justify-content: center;
+	margin: 10px;
+	font-size: 40px;
+
 }
